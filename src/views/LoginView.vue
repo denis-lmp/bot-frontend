@@ -1,55 +1,63 @@
-<!--<template>-->
-<!--    <div>-->
-<!--        <h1>Login</h1>-->
-<!--        <form @submit.prevent="login">-->
-<!--            <input type="email" name="email" v-model="email">-->
-<!--            <input type="password" name="password" v-model="password">-->
-<!--            <button type="submit">Login</button>-->
-<!--        </form>-->
-<!--    </div>-->
-<!--</template>-->
-
 <template>
-    <div class="d-flex align-center justify-center" style="height: 100vh">
-        <v-sheet width="400" class="mx-auto">
-            <v-form @submit.prevent="login">
-                <v-text-field v-model="email" label="Email"></v-text-field>
-
-                <v-text-field v-model="password" label="Password"></v-text-field>
-                <a href="#" class="text-body-2 font-weight-regular">Forgot Password?</a>
-
-                <v-btn type="submit" color="primary" block class="mt-2">Sign in</v-btn>
-
-            </v-form>
-            <div class="mt-2">
-                <p class="text-body-2">Don't have an account? <a href="#">Sign Up</a></p>
-            </div>
-        </v-sheet>
-    </div>
+    <v-app>
+        <v-container
+            fluid
+            class="d-flex align-center justify-center"
+            style="height: 75vh">
+            <v-row justify="center" align="center">
+                <v-col cols="12" sm="8" md="4">
+                    <v-card>
+                        <v-card-title class="text-h5">Login</v-card-title>
+                        <v-card-text>
+                            <v-form @submit.prevent="login">
+                                <v-text-field
+                                    class="custom-placeholder-color"
+                                    v-model="email"
+                                    label="Email"
+                                    outlined
+                                    required
+                                    bg-color="white"
+                                ></v-text-field>
+                                <v-text-field
+                                    v-model="password"
+                                    label="Password"
+                                    type="password"
+                                    outlined
+                                    required
+                                    bg-color="white"
+                                ></v-text-field>
+                                <v-btn type="submit" color="primary">Login</v-btn>
+                            </v-form>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+    </v-app>
 </template>
 
 <script>
 
 import router from '@/router'
-export default {
-            data () {
-                return {
-                    email: '',
-                    password: '',
-                }
-            },
 
-            methods: {
-                login () {
-                    this.$store.dispatch('login', {
-                        email: this.email,
-                        password: this.password,
-                    }).then(() => {
-                        router.push({ name: 'about' })
-                    }).catch(err => {
-                        console.log(err)
-                    })
-                },
-            },
+export default {
+    data () {
+        return {
+            email: '',
+            password: '',
+        }
+    },
+    methods: {
+        login () {
+            this.$store.dispatch('login', {
+                email: this.email,
+                password: this.password,
+            }).then(() => {
+                router.push({ name: 'home' })
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+    },
 }
 </script>

@@ -5,14 +5,14 @@
 <script>
 import { defineComponent } from 'vue'
 
-        // Components
-        import HelloWorld from '../components/HelloWorld.vue'
+// Components
+import HelloWorld from '../components/Main.vue'
 
-        export default defineComponent({
-  name: 'HomeView',
+export default defineComponent({
+    name: 'HomeView',
 
-  components: {
-    HelloWorld,
-  },
+    components: {
+        HelloWorld,
+    },
 })
 </script>

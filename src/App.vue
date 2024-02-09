@@ -8,11 +8,18 @@
 
 <script>
 
-export default {
-            name: 'App',
+// import Login from './views/LoginView.vue'
+import './assets/custom-styles.css'
 
-            data: () => ({
-                //
-            }),
+export default {
+    name: 'App',
+
+    components: {
+        // Login,
+    },
+
+    data: () => ({
+        //
+    }),
 }
 </script>
