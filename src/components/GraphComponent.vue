@@ -10,8 +10,6 @@ import Chart from 'chart.js/auto'
 import axios from 'axios'
 
 export default {
-    props: ['data'], // Data received from parent component
-
     data () {
         return {
             graphData: [],
@@ -40,8 +38,7 @@ export default {
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: 'Graph Data',
-                            // data: this.data.values,
+                            label: 'BTC price',
                             data: data,
                             fill: false,
                             borderColor: 'rgb(75, 192, 192)',
