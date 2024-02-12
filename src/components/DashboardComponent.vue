@@ -1,6 +1,6 @@
 <template>
     <div>
-        <graph-component :data="graphData"></graph-component>
+        <graph-component></graph-component>
     </div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-    <v-btn @click="fetchGraphData">Get data</v-btn>
+    <v-btn @click="renderChart()">Get data</v-btn>
     <div>
         <canvas ref="chartCanvas"></canvas>
     </div>
@@ -14,41 +14,48 @@ export default {
 
     data () {
         return {
-            graphData: null,
+            graphData: [],
+            chartInstance: null,
         }
     },
 
     mounted () {
-        this.renderChart()
-        // this.fetchGraphData()
+        this.fetchGraphData()
     },
 
     methods: {
         renderChart () {
+            if (this.chartInstance) {
+                this.chartInstance.destroy()
+            }
             const ctx = this.$refs.chartCanvas.getContext('2d')
 
-            // Create a new chart with received data
-            this.chartInstance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    // labels: this.data.labels,
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                    datasets: [{
-                        label: 'Graph Data',
-                        // data: this.data.values,
-                        data: [12, 19, 3, 5, 2, 3],
-                        fill: false,
-                        borderColor: 'rgb(75, 192, 192)',
-                        tension: 0.1,
-                    }],
-                },
-            })
+            if (this.graphData.data) {
+                const labels = this.graphData.data.map(price => price.created_at) ?? []
+                const data = this.graphData.data.map(price => price.price) ?? []
+
+                // Create a new chart with received data
+                this.chartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Graph Data',
+                            // data: this.data.values,
+                            data: data,
+                            fill: false,
+                            borderColor: 'rgb(75, 192, 192)',
+                            tension: 0.1,
+                        }],
+                    },
+                })
+            }
         },
         fetchGraphData () {
-            axios.get('/tradings')
+            axios.get('prices')
                 .then(response => {
-                    // console.log(response.data)
                     this.graphData = response.data
+                    this.renderChart()
                 })
                 .catch(error => {
                     console.error('Error fetching graph data:', error)
