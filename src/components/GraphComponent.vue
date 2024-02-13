@@ -1,5 +1,5 @@
 <template>
-    <v-btn @click="renderChart()">Get data</v-btn>
+    <v-btn @click="fetchGraphData()">Get data</v-btn>
     <div>
         <canvas ref="chartCanvas"></canvas>
     </div>
