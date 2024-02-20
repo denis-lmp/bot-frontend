@@ -40,7 +40,7 @@
         </v-row>
         <v-row>
             <v-col>
-                <v-row justify="center" align="center">
+                <div class="text-center" style="position: relative;">
                     <v-progress-circular
                         indeterminate
                         color="#0277BD"
@@ -49,7 +49,7 @@
                         v-if="loading"
                     ></v-progress-circular>
                     <canvas id="chartCanvas" ref="chartCanvas"></canvas>
-                </v-row>
+                </div>
             </v-col>
         </v-row>
     </v-container>
