@@ -147,23 +147,25 @@ export default {
             })
         },
         selectInterval (interval) {
-            this.endDate = moment().toDate()
+            const momentTime = moment().utc()
+            this.endDate = momentTime.toDate()
             switch (interval) {
             case '1 hour':
-                this.startDate = moment().subtract(1, 'hour').toDate()
+                this.startDate = momentTime.subtract(1, 'hour').toDate()
                 break
             case '1 day':
-                this.startDate = moment().subtract(1, 'day').toDate()
+                this.startDate = momentTime.subtract(1, 'day').toDate()
                 break
             case '3 hours':
-                this.startDate = moment().subtract(3, 'hours').toDate()
+                this.startDate = momentTime.subtract(3, 'hours').toDate()
                 break
             case '1 week':
-                this.startDate = moment().subtract(3, 'hours').toDate()
+                this.startDate = momentTime.subtract(3, 'hours').toDate()
                 break
             default:
                 break
             }
+            console.log(this.startDate, this.endDate)
         },
     },
 }

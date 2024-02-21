@@ -1,5 +1,10 @@
 # bot-frontend
 
+### Bitcoin prices
+This is a simple frontend to receive data from https://github.com/denis-lmp/bot-app via api and show price changes in real time.
+It uses Vue.js + vuetify
+
+
 ## Project setup
 ```
 npm install
