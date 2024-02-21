@@ -4,22 +4,19 @@
             <v-container class="mx-auto d-flex align-center justify-center" v-if="isLogged">
                 <v-avatar
                     class="me-4 "
-                    color="grey-darken-1"
+                    color="primary"
                     size="32"
                 ></v-avatar>
-
                 <v-btn
                     v-for="link in links"
                     :key="link.name"
                     :text="link.name"
                     :to="link.route"
                     variant="text"
+                    color="primary"
                 ></v-btn>
-
                 <v-spacer></v-spacer>
-
-                <v-btn @click="logout()" v-if="isLogged">Logout</v-btn>
-
+                <v-btn @click="logout()" v-if="isLogged" color="primary">Logout</v-btn>
             </v-container>
         </v-app-bar>
 
@@ -37,7 +34,6 @@
                                 <v-divider class="my-2"></v-divider>
 
                                 <v-list-item
-                                    color="grey-lighten-4"
                                     link
                                     title="Refresh"
                                 ></v-list-item>
