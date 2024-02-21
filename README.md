@@ -3,7 +3,7 @@
 ### Bitcoin prices
 This is a simple frontend to receive data from https://github.com/denis-lmp/bot-app via api and show price changes in real time.
 It uses Vue.js + vuetify
-
+It has Vercel https://bot-frontend-rho.vercel.app/
 
 ## Project setup
 ```
