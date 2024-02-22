@@ -160,7 +160,7 @@ export default {
                 this.startDate = momentTime.subtract(3, 'hours').toDate()
                 break
             case '1 week':
-                this.startDate = momentTime.subtract(3, 'hours').toDate()
+                this.startDate = momentTime.subtract(1, 'week').toDate()
                 break
             default:
                 break
