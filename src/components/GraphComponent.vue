@@ -3,7 +3,7 @@
         <v-row>
             <v-col cols="12" sm="6">
                 <VueDatePicker
-                    v-model="startDate"
+                    v-model="dateRange.startDate"
                     format="yyyy-MM-dd HH:mm"
                     :placeholder="'Start Date'"
                     auto-apply>
@@ -11,7 +11,7 @@
             </v-col>
             <v-col cols="12" sm="6">
                 <VueDatePicker
-                    v-model="endDate"
+                    v-model="dateRange.endDate"
                     format="yyyy-MM-dd HH:mm"
                     :placeholder="'End Date'"
                     auto-apply>
@@ -66,11 +66,13 @@ export default {
     components: { VueDatePicker },
     data () {
         return {
+            dateRange: {
+                startDate: moment().startOf('day').toDate(),
+                endDate: moment().endOf('day').toDate(),
+            },
             loading: false,
             graphData: [],
             chartInstance: null,
-            startDate: moment().startOf('day').toDate(),
-            endDate: moment().endOf('day').toDate(),
             selectedInterval: null,
         }
     },
@@ -80,15 +82,11 @@ export default {
     },
 
     watch: {
-        startDate (newValue, oldValue) {
-            if (newValue !== oldValue) {
+        dateRange: {
+            handler () {
                 this.fetchGraphData()
-            }
-        },
-        endDate (newValue, oldValue) {
-            if (newValue !== oldValue) {
-                this.fetchGraphData()
-            }
+            },
+            deep: true,
         },
     },
 
@@ -100,7 +98,7 @@ export default {
                 this.chartInstance.destroy()
             }
 
-            if (this.$refs.chartCanvas && this.graphData.data) {
+            if (this.$refs.chartCanvas && this.graphData.data && this.loading) {
                 const ctx = document.getElementById('chartCanvas').getContext('2d')
 
                 const labels = this.graphData.data.map(price => price.created_at) ?? []
@@ -129,10 +127,7 @@ export default {
             }
         },
         performParams () {
-            return {
-                startDate: this.startDate,
-                endDate: this.endDate,
-            }
+            return this.dateRange
         },
         fetchGraphData () {
             axios.get('prices', {
@@ -148,24 +143,24 @@ export default {
         },
         selectInterval (interval) {
             const momentTime = moment().utc()
-            this.endDate = momentTime.toDate()
+            this.dateRange.endDate = momentTime.toDate()
+
             switch (interval) {
             case '1 hour':
-                this.startDate = momentTime.subtract(1, 'hour').toDate()
+                this.dateRange.startDate = momentTime.subtract(1, 'hour').toDate()
                 break
             case '1 day':
-                this.startDate = momentTime.subtract(1, 'day').toDate()
+                this.dateRange.startDate = momentTime.subtract(1, 'day').toDate()
                 break
             case '3 hours':
-                this.startDate = momentTime.subtract(3, 'hours').toDate()
+                this.dateRange.startDate = momentTime.subtract(3, 'hours').toDate()
                 break
             case '1 week':
-                this.startDate = momentTime.subtract(1, 'week').toDate()
+                this.dateRange.startDate = momentTime.subtract(1, 'week').toDate()
                 break
             default:
                 break
             }
-            console.log(this.startDate, this.endDate)
         },
     },
 }
