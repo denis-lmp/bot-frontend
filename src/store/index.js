@@ -35,6 +35,14 @@ export default createStore({
                 })
         },
 
+        register ({ commit }, credentials) {
+            return axios
+                .post('/register', credentials)
+                .then(({ data }) => {
+                    commit('setUserData', data)
+                })
+        },
+
         logout ({ commit }) {
             commit('clearUserData')
         },
