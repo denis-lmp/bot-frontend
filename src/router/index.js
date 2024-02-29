@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import AboutView from '@/views/AboutView.vue'
 
 const routes = [
     {
@@ -13,7 +14,10 @@ const routes = [
     {
         path: '/about',
         name: 'about',
-        component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+        component: AboutView,
+        meta: {
+            requiresAuth: true,
+        },
     },
     {
         path: '/login',
@@ -36,6 +40,9 @@ router.beforeEach((to, from, next) => {
     const loggedIn = localStorage.getItem('user')
     if (to.matched.some(record => record.meta.requiresAuth) && !loggedIn) {
         next('/login')
+    }
+    if (loggedIn && (to.name === 'login' || to.name === 'register')) {
+        next('/')
     }
     next()
 })

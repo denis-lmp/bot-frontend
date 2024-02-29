@@ -1,18 +1,18 @@
 <template>
-  <HelloWorld />
+  <dashboard-component></dashboard-component>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
 
 // Components
-import HelloWorld from '../components/Main.vue'
+import DashboardComponent from '../components/DashboardComponent.vue'
 
 export default defineComponent({
     name: 'HomeView',
 
     components: {
-        HelloWorld,
+        DashboardComponent,
     },
 })
 </script>
