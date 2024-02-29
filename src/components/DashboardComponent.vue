@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <graph-component></graph-component>
-    </div>
+    <graph-component></graph-component>
 </template>
 
 <script>
