@@ -1,5 +1,6 @@
 <template>
     <v-navigation-drawer app rounded="lg" class="mt-4 ml-3 mr-5 h-50">
+        <v-col>
             <v-sheet rounded="lg">
                 <v-list>
                     <v-list-item
@@ -19,8 +20,8 @@
                     </v-list-item>
                 </v-list>
             </v-sheet>
+        </v-col>
     </v-navigation-drawer>
-
 </template>
 
 <script>
@@ -46,8 +47,3 @@ export default {
 }
 
 </script>
-
-<style>
-.sidebar-wrapper {
-}
-</style>
