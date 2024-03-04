@@ -1,6 +1,6 @@
 <template>
     <v-app id="app" v-if="isLogged">
-        <nav-bar-component></nav-bar-component>
+        <nav-component></nav-component>
         <v-main class="bg-grey-lighten-3">
             <v-container>
                 <sidebar-component></sidebar-component>
@@ -25,7 +25,7 @@
 
 import './assets/custom-styles.css'
 import { mapGetters } from 'vuex'
-import NavBarComponent from '@/components/Templates/NavBarComponent.vue'
+import NavComponent from '@/components/Templates/NavComponent.vue'
 import SidebarComponent from '@/components/Templates/SidebarComponent.vue'
 
 export default {
@@ -37,8 +37,8 @@ export default {
     name: 'App',
 
     components: {
+        NavComponent,
         SidebarComponent,
-        NavBarComponent,
     },
 
     data: () => ({
