@@ -16,7 +16,7 @@ export default createStore({
             state.user = userData
             localStorage.setItem('user', JSON.stringify(userData))
             localStorage.setItem('token', userData.token)
-            axios.defaults.headers.common.Authorization = `Bearer ${userData.access_token}`
+            axios.defaults.headers.common.Authorization = `Bearer ${userData.token}`
         },
 
         clearUserData () {
