@@ -74,7 +74,7 @@ export default {
                 password: this.password,
                 password_confirmation: this.passwordConfirmation,
             }).then(() => {
-                router.push({ name: 'login' })
+                router.push({ name: 'home' })
             }).catch(err => {
                 console.log(err)
             })
